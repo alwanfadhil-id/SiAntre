@@ -17,3 +17,12 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/.qwen/
+
+# Debug/Temp Scripts
+check_*.php
+fix_*.php
+test_*.php
+
+# Personal Notes
+todo_list.md
