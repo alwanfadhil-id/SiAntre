@@ -46,7 +46,6 @@ class MultiServiceDisplay extends Component
                       ->orderBy('number', 'asc');
             }])
             ->whereIn('id', $this->services)
-            ->where('is_active', true)
             ->get();
 
             $this->serviceData = $servicesCollection->map(function ($service) use ($today) {

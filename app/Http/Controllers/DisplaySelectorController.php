@@ -12,9 +12,7 @@ class DisplaySelectorController extends Controller
      */
     public function select()
     {
-        $services = Service::where('is_active', true)
-            ->orderBy('name')
-            ->get();
+        $services = Service::orderBy('name')->get();
 
         return view('display.select', compact('services'));
     }
@@ -34,7 +32,6 @@ class DisplaySelectorController extends Controller
 
         // Get selected services details
         $services = Service::whereIn('id', $selectedServices)
-            ->where('is_active', true)
             ->orderBy('name')
             ->get();
 
