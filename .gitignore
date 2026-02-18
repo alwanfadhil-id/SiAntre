@@ -17,7 +17,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-/.qwen/
 
 # Debug/Temp Scripts
 check_*.php
