@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DisplayController;
+use App\Http\Controllers\DisplaySelectorController;
 use App\Http\Controllers\Patient\HomeController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Operator\DashboardController as OperatorDashboardController;
@@ -14,8 +15,10 @@ Route::get('/services', [HomeController::class, 'services'])->name('patient.serv
 Route::post('/queue/generate', [HomeController::class, 'generateQueue'])->name('queue.generate');
 Route::get('/queue/status/{number}', [HomeController::class, 'queueStatus'])->name('queue.status');
 
-// Display screen route (public)
+// Display screen routes (public)
 Route::get('/display', [DisplayController::class, 'index'])->name('display.index');
+Route::get('/display/select', [DisplaySelectorController::class, 'select'])->name('display.select');
+Route::get('/display/show', [DisplaySelectorController::class, 'show'])->name('display.show');
 
 // Generic dashboard route (redirects based on user role)
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
