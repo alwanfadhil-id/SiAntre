@@ -1,4 +1,4 @@
-<div class="display-container">
+<div class="display-container" wire:poll.3s="refreshData">
     <div class="header-section">
         <h1 class="main-title">SISTEM ANTRIAN ONLINE (SiAntre)</h1>
         <div class="subtitle">Silahkan menuju loket pendaftaran untuk mendapatkan nomor antrian</div>
@@ -142,22 +142,8 @@
         }, 2000);
     }
 
-    // Auto-refresh every 5 seconds
-    setInterval(function() {
-        Livewire.emit('queueUpdated');
-        updateRefreshTime();
-
-        // Add subtle animation to indicate refresh
-        const refreshIndicator = document.querySelector('.refresh-indicator');
-        if (refreshIndicator) {
-            refreshIndicator.style.transform = 'scale(1.1)';
-            setTimeout(() => {
-                refreshIndicator.style.transform = 'scale(1)';
-            }, 300);
-        }
-    }, 5000);
-
-    // Also update the time every second for better UX
+    // Auto-refresh handled by Livewire polling (wire:poll.3s)
+    // Update time every second
     setInterval(updateRefreshTime, 1000);
 
     // Handle Livewire errors gracefully

@@ -45,20 +45,20 @@ class ProcessQueueOperation implements ShouldQueue
                 return;
             }
 
+            // Note: Status sudah diupdate di controller, job ini untuk background tasks lain
+            // seperti notifikasi, logging, dll jika diperlukan di masa depan
+            
             switch ($this->operation) {
                 case 'call':
-                    $queue->update(['status' => 'called']);
-                    Log::info("Queue {$queue->number} called in background job");
+                    Log::info("Queue {$queue->number} (status: {$queue->status}) processed in background job");
                     break;
 
                 case 'done':
-                    $queue->update(['status' => 'done']);
-                    Log::info("Queue {$queue->number} marked as done in background job");
+                    Log::info("Queue {$queue->number} (status: {$queue->status}) processed in background job");
                     break;
 
                 case 'cancel':
-                    $queue->update(['status' => 'canceled']);
-                    Log::info("Queue {$queue->number} canceled in background job");
+                    Log::info("Queue {$queue->number} (status: {$queue->status}) processed in background job");
                     break;
 
                 case 'reset_daily':

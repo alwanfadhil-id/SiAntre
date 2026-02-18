@@ -6,7 +6,9 @@ use App\Models\Service;
 use App\Models\Queue;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Lazy;
 
+#[Lazy]
 class DisplayScreen extends Component
 {
     public $services = [];
@@ -120,10 +122,8 @@ class DisplayScreen extends Component
 
     public function getListeners()
     {
-        // Since we're using log as broadcast driver, the echo listener won't work
-        // We rely on manual refresh and the @On attribute
         return [
-            // 'echo:queue-channel,QueueUpdated' => 'refreshData', // Disabled because broadcast is set to log
+            'echo:queue-channel.QueueUpdated' => 'handleQueueUpdate',
         ];
     }
 }

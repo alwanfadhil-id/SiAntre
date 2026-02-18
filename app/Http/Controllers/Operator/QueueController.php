@@ -127,6 +127,9 @@ class QueueController extends Controller
             $monitoringService = new \App\Services\QueueMonitoringService();
             $monitoringService->logQueueStatusChange($queue, $oldStatus, 'called');
 
+            // Emit event for real-time display screen update
+            event(new \App\Events\QueueUpdated($queue));
+
             return redirect()->back()->with('success', 'Antrian dipanggil!');
         } catch (\Exception $e) {
             \DB::rollback();
@@ -186,6 +189,9 @@ class QueueController extends Controller
             $monitoringService = new \App\Services\QueueMonitoringService();
             $monitoringService->logQueueStatusChange($queue, $oldStatus, 'done');
 
+            // Emit event for real-time display screen update
+            event(new \App\Events\QueueUpdated($queue));
+
             return redirect()->back()->with('success', 'Status antrian diubah menjadi selesai!');
         } catch (\Exception $e) {
             \DB::rollback();
@@ -244,6 +250,9 @@ class QueueController extends Controller
             // Log the status change
             $monitoringService = new \App\Services\QueueMonitoringService();
             $monitoringService->logQueueStatusChange($queue, $oldStatus, 'canceled');
+
+            // Emit event for real-time display screen update
+            event(new \App\Events\QueueUpdated($queue));
 
             return redirect()->back()->with('success', 'Status antrian diubah menjadi dibatalkan!');
         } catch (\Exception $e) {
