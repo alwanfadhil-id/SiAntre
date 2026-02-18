@@ -39,7 +39,7 @@ class MultiServiceDisplay extends Component
                 return;
             }
 
-            // Get selected services with their queues
+            // Get selected services with their queues (no cache for real-time)
             $servicesCollection = Service::with(['queues' => function($query) use ($today) {
                 $query->whereDate('created_at', $today)
                       ->whereIn('status', ['waiting', 'called', 'done'])

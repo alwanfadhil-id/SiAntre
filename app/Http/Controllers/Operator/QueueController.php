@@ -309,5 +309,9 @@ class QueueController extends Controller
         cache()->forget("operator_queues_{$serviceId}_{$today}");
         cache()->forget("next_queue_{$serviceId}_{$today}");
         cache()->forget("current_queue_{$serviceId}_{$today}");
+        
+        // Also clear general services cache to ensure display gets fresh data
+        cache()->forget('services_list');
+        cache()->forget("service_{$serviceId}_waiting_count_{$today}");
     }
 }

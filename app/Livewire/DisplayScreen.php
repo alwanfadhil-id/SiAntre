@@ -39,7 +39,7 @@ class DisplayScreen extends Component
         try {
             $today = now()->toDateString();
 
-            // Get all services with their queues for today
+            // Get all services with their queues for today (no cache for real-time)
             $servicesCollection = Service::with(['queues' => function($query) use ($today) {
                 $query->whereDate('created_at', $today)
                       ->whereIn('status', ['waiting', 'called', 'done'])
