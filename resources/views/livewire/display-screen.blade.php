@@ -4,13 +4,6 @@
         <div class="subtitle">Silahkan menuju loket pendaftaran untuk mendapatkan nomor antrian</div>
     </div>
 
-    <!-- Debug Info - Remove in production -->
-    <div class="debug-info">
-        <div>Total Services: {{ count($services) }}</div>
-        <div>Livewire Component: Ready</div>
-        <div>Services Data: {{ json_encode(array_column($services, 'name')) }}</div>
-    </div>
-
     <div class="carousel-container">
         <div class="carousel-wrapper" id="carouselWrapper">
             @if(count($services) > 0)
@@ -170,11 +163,8 @@
     // Handle Livewire errors gracefully
     window.addEventListener('livewire:init', () => {
         Livewire.on('error', (data) => {
-            console.error('Livewire error:', data);
+            // Handle errors silently
         });
-
-        // Log when Livewire is initialized
-        console.log('Livewire initialized for display screen');
     });
 
     // Listen for Livewire updates to add animations
@@ -196,8 +186,6 @@
 
     // Check if component is loading properly
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('Display screen DOM loaded');
-
         // Initialize carousel
         const slides = document.querySelectorAll('.carousel-slide');
         totalSlides = slides.length;
@@ -229,15 +217,5 @@
                 service.style.transform = 'translateY(0)';
             }, 150 * index);
         });
-
-        // Additional debug: Check if the component element exists
-        setTimeout(() => {
-            const container = document.querySelector('.display-container');
-            if(container) {
-                console.log('Display container found, component rendered');
-            } else {
-                console.error('Display container not found!');
-            }
-        }, 1000);
     });
 </script>

@@ -161,7 +161,9 @@
         function playCallSound() {
             const audio = document.getElementById('call-audio');
             audio.currentTime = 0;
-            audio.play().catch(e => console.log("Audio play prevented by browser: ", e));
+            audio.play().catch(e => {
+                // Silently handle audio play errors
+            });
         }
 
         // Play sound when page loads if there's a success message

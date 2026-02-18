@@ -247,19 +247,6 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .debug-info {
-            position: fixed;
-            top: 1rem;
-            left: 1rem;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            z-index: 9999;
-            font-size: 0.9rem;
-            max-width: 300px;
-        }
-
         @media (max-width: 1200px) {
             .service-row {
                 grid-template-columns: 1fr;
@@ -318,23 +305,5 @@
     </style>
 </head>
 <body class="bg-blue-50">
-    <!-- Debug: Check if Livewire component is being loaded -->
-    <div id="component-debug" style="position: fixed; top: 50px; left: 10px; background: yellow; color: black; padding: 10px; z-index: 9999;">
-        Component: display-screen - Loading...
-    </div>
-
     <livewire:display-screen />
-
-    @livewireScripts
-    <!-- Don't load app.js to avoid Alpine conflicts, only load CSS -->
-    <!-- @vite(['resources/js/app.js']) -->
-
-    <script>
-        // Debug script to check if Livewire component loads
-        document.addEventListener('livewire:init', () => {
-            document.getElementById('component-debug').innerHTML = 'Component: display-screen - Loaded Successfully!';
-            document.getElementById('component-debug').style.background = 'lightgreen';
-        });
-    </script>
-</body>
 </html>
